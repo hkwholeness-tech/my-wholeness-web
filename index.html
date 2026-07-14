@@ -19,6 +19,7 @@
             line-height: 1.7;
             overflow-x: hidden;
             min-height: 100vh;
+            padding-bottom: 140px; /* 為底部固定 Banner 留出空間，防止遮擋內容 */
         }
 
         .container {
@@ -175,11 +176,54 @@
 
         .audit-card p {
             color: #94a3b8;
-            font-size: 1rem;
+            font-size: 1.05rem;
+        }
+
+        /* 🌟 免圖片底 Banner 樣式 (方案一：新中式儒雅留白風) */
+        .bottom-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            /* 核心：用純代碼模擬高檔宣紙/絲綢的微漸層底色 */
+            background: linear-gradient(to bottom, #fcfbfa 0%, #f7f4f0 100%); 
+            /* 頂部加上一條極細的低調淡金色絲線，勾勒出高級感 */
+            border-top: 1px solid #e3d7c5; 
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 -4px 25px rgba(160, 140, 110, 0.12); /* 帶有溫暖色調的淡淡陰影 */
+        }
+
+        /* 雙行金句排版優化 */
+        .banner-line-1, .banner-line-2 {
+            letter-spacing: 3px; /* 加大字距，營造大器留白感 */
+            text-align: center;
+        }
+
+        .banner-line-1 {
+            color: #b81c1c; /* 硃砂紅 */
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
+        }
+
+        .banner-line-2 {
+            color: #4a4a4a; /* 深古炭灰 */
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 4px;
         }
 
         /* 4. 跨端改軌死鎖解除：手機端自適應 (@media 物理重力) */
         @media (max-width: 900px) {
+            body {
+                padding-bottom: 160px; /* 手機端 Banner 換行時加大底部留白 */
+            }
             .container {
                 padding: 20px 15px;
             }
@@ -209,6 +253,16 @@
                 width: 100%;
                 text-align: center;
                 padding: 16px 20px;
+            }
+            .bottom-banner {
+                padding: 20px 15px;
+            }
+            .banner-line-1 {
+                font-size: 18px;
+            }
+            .banner-line-2 {
+                font-size: 12px;
+                letter-spacing: 2px;
             }
         }
 
@@ -258,6 +312,12 @@
         </div>
     </div>
 
+    <!-- 🌟 底部免圖片 Banner 區：新中式儒雅留白風 -->
+    <div class="bottom-banner">
+        <div class="banner-line-1">氣針引導 · 骨架歸軌 · 啟動大腦主權引擎</div>
+        <div class="banner-line-2">劍鋒長生能量分型與物理調理沙盤</div>
+    </div>
+
     <!-- 5. 東方物理動態交互腳本 -->
     <script>
         const btn = document.getElementById('launch-btn');
@@ -274,6 +334,13 @@
                 btn.innerText = '啟動長生能量運算 ➔';
             }, 500);
         });
+
+        /* 
+           💡 連接提示說明：
+           如果你在左側側邊欄的 [火] 按鈕，只需要將代碼寫為：
+           <a href="fire-analysis.html" class="five-item item-huo">...火...</a>
+           當用戶點擊該按鈕時，即會一鍵跳轉到此頁面。
+        */
     </script>
 
 </body>
