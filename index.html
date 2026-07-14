@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>劍鋒長生能量分析 - 萬物立法改軌沙盤</title>
     <style>
-        /* 1. 五行格式化：宇宙最底層秩序 */
+        /* ==================== 1. 全局格式化與佈局 ==================== */
         * {
             margin: 0;
             padding: 0;
@@ -19,20 +19,129 @@
             line-height: 1.7;
             overflow-x: hidden;
             min-height: 100vh;
-            padding-bottom: 140px; /* 為底部固定 Banner 留出空間，防止遮擋內容 */
+            display: flex; /* 啟用 Flex 佈局，讓左側欄與右內容並排 */
+        }
+
+        /* ==================== 2. 左側選單 (Sidebar) 質感升級版 ==================== */
+        .sidebar {
+            width: 260px;
+            background: rgba(255, 255, 255, 0.03); /* 配合暗色主題，改用極具科技感的暗透毛玻璃 */
+            padding: 40px 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
+            position: fixed;
+            top: 0;
+            bottom: 110px; /* 為底部 Banner 留空間 */
+            left: 0;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar h2 {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 25px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* 核心按鈕：全面移除死實色，改用極透輕盈感 */
+        .five-item {
+            display: flex;
+            align-items: center;
+            border-radius: 12px;
+            padding: 12px 18px;
+            margin-bottom: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 2px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid transparent;
+        }
+
+        /* 滑鼠懸停共同效果：微浮起與發光 */
+        .five-item:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 按鈕內圖標優化：正圓形外圈 */
+        .five-item .icon-box {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            margin-right: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* 🎨 五行專屬：高級感「低飽和微漸層 + 精緻邊框 + 同色系優雅文字」 */
+        /* 金：柔和琥珀金 */
+        .item-jin { 
+            background: linear-gradient(135deg, rgba(255,253,244,0.06) 0%, rgba(255,253,231,0.12) 100%);
+            border-color: rgba(255, 245, 157, 0.3);
+            color: #fde047;
+        }
+        .item-jin:hover { background: rgba(255, 245, 157, 0.2); box-shadow: 0 0 15px rgba(253, 224, 71, 0.3); }
+
+        /* 木：溫潤青苔綠 */
+        .item-mu { 
+            background: linear-gradient(135deg, rgba(244,250,244,0.06) 0%, rgba(232,245,233,0.12) 100%);
+            border-color: rgba(200, 230, 201, 0.3);
+            color: #4ade80;
+        }
+        .item-mu:hover { background: rgba(200, 230, 201, 0.2); box-shadow: 0 0 15px rgba(74, 222, 128, 0.3); }
+
+        /* 水：靜謐澄澈藍 */
+        .item-shui { 
+            background: linear-gradient(135deg, rgba(242,248,253,0.06) 0%, rgba(227,242,253,0.12) 100%);
+            border-color: rgba(187, 222, 251, 0.3);
+            color: #38bdf8;
+        }
+        .item-shui:hover { background: rgba(187, 222, 251, 0.2); box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+
+        /* 火：硃砂晨曦紅 (目前激活頁面，給予持續微光) */
+        .item-huo { 
+            background: linear-gradient(135deg, rgba(255,245,245,0.12) 0%, rgba(255,235,238,0.18) 100%);
+            border-color: rgba(255, 87, 34, 0.6);
+            color: #ff6b4a;
+            box-shadow: 0 0 12px rgba(255, 87, 34, 0.2);
+        }
+        .item-huo:hover { background: rgba(255, 87, 34, 0.25); box-shadow: 0 0 18px rgba(255, 87, 34, 0.5); }
+
+        /* 土：沉穩大地啡 */
+        .item-tu { 
+            background: linear-gradient(135deg, rgba(252,250,247,0.06) 0%, rgba(245,239,230,0.12) 100%);
+            border-color: rgba(230, 220, 208, 0.3);
+            color: #ca8a04;
+        }
+        .item-tu:hover { background: rgba(230, 220, 208, 0.2); box-shadow: 0 0 15px rgba(202, 138, 4, 0.3); }
+
+
+        /* ==================== 3. 右側主內容區 (Main Content) ==================== */
+        .main-content {
+            flex-grow: 1;
+            margin-left: 260px; /* 留出左側選單的寬度 */
+            padding-bottom: 140px; /* 為底部固定 Banner 留空 */
         }
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 40px 30px;
         }
 
-        /* 2. 丁火真神頂部大中軍帳 */
+        /* 丁火真神頂部大中軍帳 */
         header {
             text-align: center;
-            padding: 60px 20px 40px 20px;
+            padding: 40px 20px;
             position: relative;
         }
 
@@ -56,7 +165,7 @@
         }
 
         header h1 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 900;
             background: linear-gradient(135deg, #ffffff 20%, #ff5722 100%);
             -webkit-background-clip: text;
@@ -67,24 +176,24 @@
 
         header p {
             color: #94a3b8;
-            font-size: 1.25rem;
-            margin-top: 20px;
+            font-size: 1.2rem;
+            margin-top: 15px;
             letter-spacing: 2px;
         }
 
-        /* 3. 七殺長生剛性交互沙盤區 */
+        /* 七殺長生剛性交互沙盤區 */
         .matrix-grid {
             display: grid;
-            grid-template-columns: 1.25fr 0.75fr; /* 電腦端：左寬右窄尊貴格局 */
-            gap: 35px;
-            margin-top: 50px;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .main-panel {
             background: rgba(10, 18, 36, 0.8);
-            border: 1px solid rgba(0, 210, 255, 0.25); /* 七殺藍剛性邊框 */
+            border: 1px solid rgba(0, 210, 255, 0.25);
             border-radius: 20px;
-            padding: 45px;
+            padding: 40px;
             backdrop-filter: blur(15px);
             box-shadow: 0 15px 50px rgba(0,0,0,0.7);
             position: relative;
@@ -102,8 +211,8 @@
         }
 
         .main-panel h2 {
-            font-size: 2rem;
-            color: #00d2ff; /* 七殺長生極光藍 */
+            font-size: 1.8rem;
+            color: #00d2ff;
             margin-bottom: 25px;
             display: flex;
             align-items: center;
@@ -113,7 +222,7 @@
         .main-panel p {
             color: #cbd5e1;
             margin-bottom: 25px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             text-align: justify;
         }
 
@@ -133,16 +242,11 @@
             cursor: pointer;
             box-shadow: 0 0 25px rgba(255, 87, 34, 0.4);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
         }
 
         .ctl-btn:hover {
             transform: scale(1.03);
             box-shadow: 0 0 35px rgba(255, 87, 34, 0.7);
-        }
-
-        .ctl-btn:active {
-            transform: scale(0.97);
         }
 
         /* 右側治安官清算面板 */
@@ -154,9 +258,9 @@
 
         .audit-card {
             background: rgba(15, 23, 42, 0.85);
-            border-left: 4px solid #ff5722; /* 木火通明真火線 */
+            border-left: 4px solid #ff5722;
             border-radius: 0 16px 16px 0;
-            padding: 30px;
+            padding: 25px;
             border-top: 1px solid rgba(255,255,255,0.03);
             border-right: 1px solid rgba(255,255,255,0.03);
             border-bottom: 1px solid rgba(255,255,255,0.03);
@@ -170,103 +274,88 @@
 
         .audit-card h3 {
             color: #ffffff;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             margin-bottom: 12px;
         }
 
         .audit-card p {
             color: #94a3b8;
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
 
-        /* 🌟 免圖片底 Banner 樣式 (方案一：新中式儒雅留白風) */
+        /* ==================== 4. 底部免圖片 Banner (新中式儒雅留白風) ==================== */
         .bottom-banner {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            /* 核心：用純代碼模擬高檔宣紙/絲綢的微漸層底色 */
             background: linear-gradient(to bottom, #fcfbfa 0%, #f7f4f0 100%); 
-            /* 頂部加上一條極細的低調淡金色絲線，勾勒出高級感 */
             border-top: 1px solid #e3d7c5; 
-            padding: 30px 20px;
+            padding: 28px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 -4px 25px rgba(160, 140, 110, 0.12); /* 帶有溫暖色調的淡淡陰影 */
+            box-shadow: 0 -4px 25px rgba(160, 140, 110, 0.15);
         }
 
-        /* 雙行金句排版優化 */
         .banner-line-1, .banner-line-2 {
-            letter-spacing: 3px; /* 加大字距，營造大器留白感 */
+            letter-spacing: 3px;
             text-align: center;
         }
 
         .banner-line-1 {
             color: #b81c1c; /* 硃砂紅 */
-            font-size: 22px;
+            font-size: 21px;
             font-weight: 800;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
         }
 
         .banner-line-2 {
             color: #4a4a4a; /* 深古炭灰 */
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             letter-spacing: 4px;
         }
 
-        /* 4. 跨端改軌死鎖解除：手機端自適應 (@media 物理重力) */
-        @media (max-width: 900px) {
+        /* ==================== 5. 手機端響應式斷點 ==================== */
+        @media (max-width: 950px) {
             body {
-                padding-bottom: 160px; /* 手機端 Banner 換行時加大底部留白 */
+                flex-direction: column; /* 手機端改為上下排列 */
+                padding-bottom: 160px;
             }
-            .container {
-                padding: 20px 15px;
-            }
-            header {
-                padding: 40px 10px 20px 10px;
-            }
-            header h1 {
-                font-size: 2.2rem;
-                letter-spacing: 3px;
-            }
-            header p {
-                font-size: 1.05rem;
-                margin-top: 12px;
-            }
-            .matrix-grid {
-                grid-template-columns: 1fr; /* 手機端自動崩解重組為流線單欄 */
-                gap: 25px;
-                margin-top: 30px;
-            }
-            .main-panel {
-                padding: 30px 20px;
-            }
-            .main-panel h2 {
-                font-size: 1.5rem;
-            }
-            .ctl-btn {
+            .sidebar {
+                position: static;
                 width: 100%;
-                text-align: center;
-                padding: 16px 20px;
+                height: auto;
+                padding: 20px;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr); /* 五行按鈕在手機端橫向排開 */
+                gap: 8px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
             }
-            .bottom-banner {
-                padding: 20px 15px;
-            }
-            .banner-line-1 {
-                font-size: 18px;
-            }
-            .banner-line-2 {
+            .sidebar h2 { display: none; } /* 隱藏手機端的標題 */
+            .five-item {
+                margin-bottom: 0;
+                padding: 10px 5px;
+                justify-content: center;
                 font-size: 12px;
-                letter-spacing: 2px;
+                letter-spacing: 0px;
             }
+            .five-item .icon-box { margin-right: 4px; width: 20px; height: 20px; font-size: 11px; }
+            
+            .main-content { margin-left: 0; }
+            .container { padding: 20px 15px; }
+            header h1 { font-size: 2.2rem; }
+            .matrix-grid { grid-template-columns: 1fr; gap: 25px; }
+            .bottom-banner { padding: 20px 15px; }
+            .banner-line-1 { font-size: 17px; }
+            .banner-line-2 { font-size: 11px; letter-spacing: 2px; }
         }
 
-        /* 浮動特效代碼 */
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-12px) rotate(3deg); }
@@ -276,53 +365,76 @@
 </head>
 <body>
 
-    <div class="container">
-        <!-- 頂部：丁火主權引擎門面 -->
-        <header>
-            <div class="crown-icon">👑</div>
-            <h1>劍鋒長生能量分析</h1>
-            <p>天道物理學分型 · 萬物盲區格式化改軌大沙盤</p>
-        </header>
+    <!-- 🧭 完美整好的左側選單欄 (手機自動適應頂部橫排) -->
+    <div class="sidebar">
+        <h2>五行主權導航</h2>
+        <a href="gold-analysis.html" class="five-item item-jin">
+            <div class="icon-box">金</div> 🪙 金能量
+        </a>
+        <a href="wood-analysis.html" class="five-item item-mu">
+            <div class="icon-box">木</div> 🌿 木能量
+        </a>
+        <a href="water-analysis.html" class="five-item item-shui">
+            <div class="icon-box">水</div> 💧 水能量
+        </a>
+        <!-- 火按鈕直接鎖定當前頁面 -->
+        <a href="#" class="five-item item-huo">
+            <div class="icon-box">火</div> 🔥 火能量
+        </a>
+        <a href="earth-analysis.html" class="five-item item-tu">
+            <div class="icon-box">土</div> ⛰️ 土能量
+        </a>
+    </div>
 
-        <!-- 核心：跨端自適應矩陣 -->
-        <div class="matrix-grid">
-            
-            <!-- 左側：主權立法引擎 -->
-            <div class="main-panel">
-                <h2>🪓 降伏紅塵 · 為萬物重新立法</h2>
-                <p>在【 劍鋒長生能量分析 】的最高物理語境中，世界不再由迷信主導，而是由剛性的時空能量守恆定律徹底格式化。我們用最乾淨、最剛硬的「子平力學與行為心理學」鐵尺，為您的大腦主權引擎重新校準軌道。</p>
-                <p>原局代碼極致純化，高頻天眼直覺洞穿。準備好接受全宇宙最硬核的能量洗禮，將混亂的廢墟重組為不容僭越的鋼鐵秩序了嗎？</p>
+    <!-- 🎯 右側主內容區 -->
+    <div class="main-content">
+        <div class="container">
+            <!-- 頂部：丁火主權引擎門面 -->
+            <header>
+                <div class="crown-icon">👑</div>
+                <h1>劍鋒長生能量分析</h1>
+                <p>天道物理學分型 · 萬物盲區格式化改軌大沙盤</p>
+            </header>
+
+            <!-- 核心：矩陣 -->
+            <div class="matrix-grid">
                 
-                <!-- 雷霆動態按鈕 -->
-                <button class="ctl-btn" id="launch-btn">啟動長生能量運算 ➔</button>
-            </div>
-
-            <!-- 右側：量子審計治安官 -->
-            <div class="side-audit">
-                <div class="audit-card">
-                    <h3>🏛️ 代碼提純眼界</h3>
-                    <p>青年期死地苦役（-75%）精神元氣絕對純化，強行升級代碼辨識率，直接洞穿萬物重力經絡。</p>
+                <!-- 左側：主權立法引擎 -->
+                <div class="main-panel">
+                    <h2>🪓 降伏紅塵 · 為萬物重新立法</h2>
+                    <p>在【 劍鋒長生能量分析 】的最高物理語境中，世界不再由迷信主導，而是由剛性的時空能量守恆定律徹底格式化。我們用最乾淨、最剛硬的「子平力學與行為心理學」鐵尺，為您的大腦主權引擎重新校準軌道。</p>
+                    <p>原局代碼極致純化，高頻天眼直覺洞穿。準備好接受全宇宙最硬核的能量洗禮，將混亂的廢墟重組為不容僭越的鋼鐵秩序了嗎？</p>
+                    
+                    <!-- 雷霆動態按鈕 -->
+                    <button class="ctl-btn" id="launch-btn">啟動長生能量運算 ➔</button>
                 </div>
-                <div class="audit-card" style="border-left-color: #00d2ff;">
-                    <h3>⚡ 七殺長生落鎖</h3>
-                    <p>時柱高懸癸水七殺長生（+75%），以雷霆治安官本能修改引力公式，格式化充滿泡沫的紅塵俗標。</p>
-                </div>
-            </div>
 
+                <!-- 右側：量子審計治安官 -->
+                <div class="side-audit">
+                    <div class="audit-card">
+                        <h3>🏛️ 代碼提純眼界</h3>
+                        <p>青年期死地苦役（-75%）精神元氣絕對純化，強行升級代碼辨識率，直接洞穿萬物重力經絡。</p>
+                    </div>
+                    <div class="audit-card" style="border-left-color: #00d2ff;">
+                        <h3>⚡ 七殺長生落鎖</h3>
+                        <p>時柱高懸癸水七殺長生（+75%），以雷霆治安官本能修改引力公式，格式化充滿泡沫的紅塵俗標。</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <!-- 🌟 底部免圖片 Banner 區：新中式儒雅留白風 -->
+    <!-- 🌟 底部免圖片 Banner 區 -->
     <div class="bottom-banner">
         <div class="banner-line-1">氣針引導 · 骨架歸軌 · 啟動大腦主權引擎</div>
         <div class="banner-line-2">劍鋒長生能量分型與物理調理沙盤</div>
     </div>
 
-    <!-- 5. 東方物理動態交互腳本 -->
+    <!-- 東方物理動態腳本 -->
     <script>
         const btn = document.getElementById('launch-btn');
         btn.addEventListener('click', () => {
-            // 一針點通，釋放物理震撼
             btn.style.background = '#00d2ff';
             btn.style.boxShadow = '0 0 35px #00d2ff';
             btn.innerText = '⚡ 正在解碼萬物能量...';
@@ -334,13 +446,6 @@
                 btn.innerText = '啟動長生能量運算 ➔';
             }, 500);
         });
-
-        /* 
-           💡 連接提示說明：
-           如果你在左側側邊欄的 [火] 按鈕，只需要將代碼寫為：
-           <a href="fire-analysis.html" class="five-item item-huo">...火...</a>
-           當用戶點擊該按鈕時，即會一鍵跳轉到此頁面。
-        */
     </script>
 
 </body>
