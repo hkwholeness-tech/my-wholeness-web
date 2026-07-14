@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Serif TC", "Microsoft JhengHei", sans-serif;
         }
 
         body {
@@ -19,35 +19,34 @@
             line-height: 1.7;
             overflow-x: hidden;
             min-height: 100vh;
-            display: flex; /* 啟用 Flex 佈局，讓左側欄與右內容並排 */
+            display: flex; 
         }
 
-        /* ==================== 2. 左側選單 (Sidebar) 質感升級版 ==================== */
+        /* ==================== 2. 左側選單 (Sidebar) 毛玻璃升級 ==================== */
         .sidebar {
             width: 260px;
-            background: rgba(255, 255, 255, 0.03); /* 配合暗色主題，改用極具科技感的暗透毛玻璃 */
+            background: rgba(10, 18, 36, 0.4); 
             padding: 40px 20px;
             border-right: 1px solid rgba(255, 255, 255, 0.05);
             flex-shrink: 0;
             position: fixed;
             top: 0;
-            bottom: 110px; /* 為底部 Banner 留空間 */
+            bottom: 120px; /* 為港恩風 Banner 留空間 */
             left: 0;
             overflow-y: auto;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            z-index: 90;
         }
 
         .sidebar h2 {
-            font-size: 14px;
+            font-size: 13px;
             color: #94a3b8;
             margin-bottom: 25px;
             font-weight: 600;
             letter-spacing: 2px;
-            text-transform: uppercase;
             text-align: center;
         }
 
-        /* 核心按鈕：全面移除死實色，改用極透輕盈感 */
         .five-item {
             display: flex;
             align-items: center;
@@ -58,16 +57,14 @@
             font-weight: 700;
             font-size: 14px;
             letter-spacing: 2px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.3s ease;
             border: 1px solid transparent;
         }
 
-        /* 滑鼠懸停共同效果：微浮起與發光 */
         .five-item:hover {
             transform: translateY(-2px);
         }
 
-        /* 按鈕內圖標優化：正圓形外圈 */
         .five-item .icon-box {
             width: 26px;
             height: 26px;
@@ -78,57 +75,35 @@
             justify-content: center;
             background: rgba(255, 255, 255, 0.1);
             font-size: 14px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* 🎨 五行專屬：高級感「低飽和微漸層 + 精緻邊框 + 同色系優雅文字」 */
-        /* 金：柔和琥珀金 */
-        .item-jin { 
-            background: linear-gradient(135deg, rgba(255,253,244,0.06) 0%, rgba(255,253,231,0.12) 100%);
-            border-color: rgba(255, 245, 157, 0.3);
-            color: #fde047;
-        }
-        .item-jin:hover { background: rgba(255, 245, 157, 0.2); box-shadow: 0 0 15px rgba(253, 224, 71, 0.3); }
+        /* 五行色彩同步優化 */
+        .item-jin { background: linear-gradient(135deg, rgba(255,253,244,0.04) 0%, rgba(255,253,231,0.08) 100%); border-color: rgba(255, 245, 157, 0.2); color: #fde047; }
+        .item-jin:hover { background: rgba(255, 245, 157, 0.15); box-shadow: 0 0 15px rgba(253, 224, 71, 0.2); }
 
-        /* 木：溫潤青苔綠 */
-        .item-mu { 
-            background: linear-gradient(135deg, rgba(244,250,244,0.06) 0%, rgba(232,245,233,0.12) 100%);
-            border-color: rgba(200, 230, 201, 0.3);
-            color: #4ade80;
-        }
-        .item-mu:hover { background: rgba(200, 230, 201, 0.2); box-shadow: 0 0 15px rgba(74, 222, 128, 0.3); }
+        .item-mu { background: linear-gradient(135deg, rgba(244,250,244,0.04) 0%, rgba(232,245,233,0.08) 100%); border-color: rgba(200, 230, 201, 0.2); color: #4ade80; }
+        .item-mu:hover { background: rgba(200, 230, 201, 0.15); box-shadow: 0 0 15px rgba(74, 222, 128, 0.2); }
 
-        /* 水：靜謐澄澈藍 */
-        .item-shui { 
-            background: linear-gradient(135deg, rgba(242,248,253,0.06) 0%, rgba(227,242,253,0.12) 100%);
-            border-color: rgba(187, 222, 251, 0.3);
-            color: #38bdf8;
-        }
-        .item-shui:hover { background: rgba(187, 222, 251, 0.2); box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+        .item-shui { background: linear-gradient(135deg, rgba(242,248,253,0.04) 0%, rgba(227,242,253,0.08) 100%); border-color: rgba(187, 222, 251, 0.2); color: #38bdf8; }
+        .item-shui:hover { background: rgba(187, 222, 251, 0.15); box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
 
-        /* 火：硃砂晨曦紅 (目前激活頁面，給予持續微光) */
+        /* 火能量：呼應 Logo 的番茄紅/硃砂橙 */
         .item-huo { 
-            background: linear-gradient(135deg, rgba(255,245,245,0.12) 0%, rgba(255,235,238,0.18) 100%);
-            border-color: rgba(255, 87, 34, 0.6);
+            background: linear-gradient(135deg, rgba(224,49,49,0.1) 0%, rgba(230,74,25,0.15) 100%);
+            border-color: rgba(224, 49, 49, 0.5);
             color: #ff6b4a;
-            box-shadow: 0 0 12px rgba(255, 87, 34, 0.2);
+            box-shadow: 0 0 12px rgba(224, 49, 49, 0.2);
         }
-        .item-huo:hover { background: rgba(255, 87, 34, 0.25); box-shadow: 0 0 18px rgba(255, 87, 34, 0.5); }
+        .item-huo:hover { background: rgba(224, 49, 49, 0.2); box-shadow: 0 0 18px rgba(224, 49, 49, 0.4); }
 
-        /* 土：沉穩大地啡 */
-        .item-tu { 
-            background: linear-gradient(135deg, rgba(252,250,247,0.06) 0%, rgba(245,239,230,0.12) 100%);
-            border-color: rgba(230, 220, 208, 0.3);
-            color: #ca8a04;
-        }
-        .item-tu:hover { background: rgba(230, 220, 208, 0.2); box-shadow: 0 0 15px rgba(202, 138, 4, 0.3); }
+        .item-tu { background: linear-gradient(135deg, rgba(252,250,247,0.04) 0%, rgba(245,239,230,0.08) 100%); border-color: rgba(230, 220, 208, 0.2); color: #ca8a04; }
+        .item-tu:hover { background: rgba(230, 220, 208, 0.15); box-shadow: 0 0 15px rgba(202, 138, 4, 0.2); }
 
-
-        /* ==================== 3. 右側主內容區 (Main Content) ==================== */
+        /* ==================== 3. 右側主內容區 ==================== */
         .main-content {
             flex-grow: 1;
-            margin-left: 260px; /* 留出左側選單的寬度 */
-            padding-bottom: 140px; /* 為底部固定 Banner 留空 */
+            margin-left: 260px;
+            padding-bottom: 160px; /* 留出空間給固定的港恩風 Banner */
         }
 
         .container {
@@ -138,45 +113,43 @@
             padding: 40px 30px;
         }
 
-        /* 丁火真神頂部大中軍帳 */
+        /* 👑 頂部：整合公司 Logo 區塊 */
         header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px 40px 20px;
             position: relative;
         }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #ff5722, transparent);
-            box-shadow: 0 0 10px #ff5722;
-        }
-
-        .crown-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            display: inline-block;
+        /* Logo 容器：控制圖片大小與精緻度 */
+        .logo-container {
+            max-width: 280px;
+            margin: 0 auto 20px auto;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.95); /* 給白底 logo 一個高級的微圓角襯底 */
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             animation: float 4s ease-in-out infinite;
         }
 
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         header h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #ffffff 20%, #ff5722 100%);
+            background: linear-gradient(135deg, #ffffff 30%, #c5a880 100%); /* 融入 Logo 的淡金色 */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 6px;
-            text-shadow: 0 0 35px rgba(255, 87, 34, 0.25);
+            text-shadow: 0 0 35px rgba(197, 168, 128, 0.15);
         }
 
         header p {
             color: #94a3b8;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             margin-top: 15px;
             letter-spacing: 2px;
         }
@@ -191,7 +164,7 @@
 
         .main-panel {
             background: rgba(10, 18, 36, 0.8);
-            border: 1px solid rgba(0, 210, 255, 0.25);
+            border: 1px solid rgba(0, 210, 255, 0.2);
             border-radius: 20px;
             padding: 40px;
             backdrop-filter: blur(15px);
@@ -207,11 +180,11 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, #ff5722, #00d2ff);
+            background: linear-gradient(90deg, #e64a19, #c5a880); /* 呼應 Logo 紅與金 */
         }
 
         .main-panel h2 {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             color: #00d2ff;
             margin-bottom: 25px;
             display: flex;
@@ -226,13 +199,13 @@
             text-align: justify;
         }
 
-        /* 丁火核心雷霆按鈕 */
+        /* 核心按鈕：採用呼應 Logo 的番茄紅漸層 */
         .ctl-btn {
             position: relative;
             display: inline-block;
-            background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
+            background: linear-gradient(135deg, #e03131 0%, #b81c1c 100%);
             color: #fff;
-            padding: 16px 45px;
+            padding: 15px 45px;
             border-radius: 30px;
             font-size: 1.1rem;
             text-decoration: none;
@@ -240,16 +213,16 @@
             letter-spacing: 2px;
             border: none;
             cursor: pointer;
-            box-shadow: 0 0 25px rgba(255, 87, 34, 0.4);
+            box-shadow: 0 0 25px rgba(224, 49, 49, 0.3);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .ctl-btn:hover {
             transform: scale(1.03);
-            box-shadow: 0 0 35px rgba(255, 87, 34, 0.7);
+            box-shadow: 0 0 35px rgba(224, 49, 49, 0.6);
         }
 
-        /* 右側治安官清算面板 */
+        /* 右側治安官面板 */
         .side-audit {
             display: flex;
             flex-direction: column;
@@ -258,7 +231,7 @@
 
         .audit-card {
             background: rgba(15, 23, 42, 0.85);
-            border-left: 4px solid #ff5722;
+            border-left: 4px solid #e03131; /* 同步改為 Logo 紅 */
             border-radius: 0 16px 16px 0;
             padding: 25px;
             border-top: 1px solid rgba(255,255,255,0.03);
@@ -283,89 +256,111 @@
             font-size: 1rem;
         }
 
-        /* ==================== 4. 底部免圖片 Banner (新中式儒雅留白風) ==================== */
+        /* ==================== 4. 🌟 港恩網頁美學風：免圖片質感底 Banner ==================== */
         .bottom-banner {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: linear-gradient(to bottom, #fcfbfa 0%, #f7f4f0 100%); 
-            border-top: 1px solid #e3d7c5; 
-            padding: 28px 20px;
+            
+            /* 港恩美學核心：採用半透明白玉質感底色（診所高雅感），帶有細緻的磨砂毛玻璃效果 */
+            background: rgba(252, 251, 250, 0.96); 
+            backdrop-filter: blur(20px);
+            
+            /* 頂部加上如港恩網頁般、極具醫療美學細節的「淡金線 + 紅色標記點」 */
+            border-top: 1px solid #d4c4ad; 
+            padding: 25px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 -4px 25px rgba(160, 140, 110, 0.15);
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 頂部裝飾：精緻的中醫美學定位點 */
+        .bottom-banner::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            width: 6px;
+            height: 5px;
+            background: #e03131; /* 呼應 Logo 的氣針番茄紅點 */
+            border-radius: 50%;
         }
 
         .banner-line-1, .banner-line-2 {
-            letter-spacing: 3px;
             text-align: center;
+            /* 港恩風格靈魂：採用新細明體/明體類型的優雅襯線字型，字距寬鬆大器 */
+            font-family: "Noto Serif TC", "MingLiU", serif; 
         }
 
         .banner-line-1 {
-            color: #b81c1c; /* 硃砂紅 */
-            font-size: 21px;
-            font-weight: 800;
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
+            color: #2c2a29; /* 港恩愛用的高質感深炭褐黑 */
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 5px; /* 特意加寬字距，呈現高級中醫理療的平靜感 */
+            margin-bottom: 4px;
         }
 
         .banner-line-2 {
-            color: #4a4a4a; /* 深古炭灰 */
+            color: #bd9a5f; /* 港恩風標誌性：優雅淡金色 */
             font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 4px;
+            font-weight: 600;
+            letter-spacing: 6px;
+            text-transform: uppercase;
         }
 
-        /* ==================== 5. 手機端響應式斷點 ==================== */
+        /* ==================== 5. 手機端自適應斷點 ==================== */
         @media (max-width: 950px) {
             body {
-                flex-direction: column; /* 手機端改為上下排列 */
-                padding-bottom: 160px;
+                flex-direction: column;
+                padding-bottom: 180px;
             }
             .sidebar {
                 position: static;
                 width: 100%;
                 height: auto;
-                padding: 20px;
+                padding: 15px 10px;
                 display: grid;
-                grid-template-columns: repeat(5, 1fr); /* 五行按鈕在手機端橫向排開 */
-                gap: 8px;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 6px;
                 border-right: none;
                 border-bottom: 1px solid rgba(255,255,255,0.05);
             }
-            .sidebar h2 { display: none; } /* 隱藏手機端的標題 */
+            .sidebar h2 { display: none; }
             .five-item {
                 margin-bottom: 0;
-                padding: 10px 5px;
+                padding: 10px 2px;
                 justify-content: center;
-                font-size: 12px;
+                font-size: 11px;
                 letter-spacing: 0px;
+                border-radius: 8px;
             }
-            .five-item .icon-box { margin-right: 4px; width: 20px; height: 20px; font-size: 11px; }
+            .five-item .icon-box { margin-right: 2px; width: 18px; height: 18px; font-size: 10px; }
             
             .main-content { margin-left: 0; }
-            .container { padding: 20px 15px; }
-            header h1 { font-size: 2.2rem; }
-            .matrix-grid { grid-template-columns: 1fr; gap: 25px; }
-            .bottom-banner { padding: 20px 15px; }
-            .banner-line-1 { font-size: 17px; }
-            .banner-line-2 { font-size: 11px; letter-spacing: 2px; }
+            .container { padding: 25px 15px; }
+            header { padding-top: 15px; }
+            .logo-container { max-width: 220px; }
+            header h1 { font-size: 2rem; letter-spacing: 3px; }
+            .matrix-grid { grid-template-columns: 1fr; gap: 20px; }
+            
+            .bottom-banner { padding: 18px 10px; }
+            .banner-line-1 { font-size: 15px; letter-spacing: 2px; }
+            .banner-line-2 { font-size: 10px; letter-spacing: 3px; }
         }
 
         @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-12px) rotate(3deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
         }
     </style>
 </head>
 <body>
 
-    <!-- 🧭 完美整好的左側選單欄 (手機自動適應頂部橫排) -->
+    <!-- 🧭 左側選單欄（已與火頁面完美同步色彩語境） -->
     <div class="sidebar">
         <h2>五行主權導航</h2>
         <a href="gold-analysis.html" class="five-item item-jin">
@@ -377,7 +372,6 @@
         <a href="water-analysis.html" class="five-item item-shui">
             <div class="icon-box">水</div> 💧 水能量
         </a>
-        <!-- 火按鈕直接鎖定當前頁面 -->
         <a href="#" class="five-item item-huo">
             <div class="icon-box">火</div> 🔥 火能量
         </a>
@@ -389,14 +383,18 @@
     <!-- 🎯 右側主內容區 -->
     <div class="main-content">
         <div class="container">
-            <!-- 頂部：丁火主權引擎門面 -->
+            
+            <!-- 👑 頂部：丁火主權引擎門面 + 整合公司 Logo -->
             <header>
-                <div class="crown-icon">👑</div>
+                <div class="logo-container">
+                    <!-- 💡 圖片路徑提示：請確保你的 Logo 圖片命名為「logo.jpg」並與此 HTML 放在同一個資料夾，或自行修改下方 src 檔名 -->
+                    <img src="logo.jpg" alt="全治氣針 WE Acupuncture">
+                </div>
                 <h1>劍鋒長生能量分析</h1>
                 <p>天道物理學分型 · 萬物盲區格式化改軌大沙盤</p>
             </header>
 
-            <!-- 核心：矩陣 -->
+            <!-- 核心：沙盤矩陣 -->
             <div class="matrix-grid">
                 
                 <!-- 左側：主權立法引擎 -->
@@ -405,7 +403,7 @@
                     <p>在【 劍鋒長生能量分析 】的最高物理語境中，世界不再由迷信主導，而是由剛性的時空能量守恆定律徹底格式化。我們用最乾淨、最剛硬的「子平力學與行為心理學」鐵尺，為您的大腦主權引擎重新校準軌道。</p>
                     <p>原局代碼極致純化，高頻天眼直覺洞穿。準備好接受全宇宙最硬核的能量洗禮，將混亂的廢墟重組為不容僭越的鋼鐵秩序了嗎？</p>
                     
-                    <!-- 雷霆動態按鈕 -->
+                    <!-- 雷霆動態按鈕 (已與 Logo 紅同步) -->
                     <button class="ctl-btn" id="launch-btn">啟動長生能量運算 ➔</button>
                 </div>
 
@@ -425,10 +423,10 @@
         </div>
     </div>
 
-    <!-- 🌟 底部免圖片 Banner 區 -->
+    <!-- 🌟 底部固定 Banner 區：港恩中醫現代美學風（CSS免圖片純代碼實作） -->
     <div class="bottom-banner">
         <div class="banner-line-1">氣針引導 · 骨架歸軌 · 啟動大腦主權引擎</div>
-        <div class="banner-line-2">劍鋒長生能量分型與物理調理沙盤</div>
+        <div class="banner-line-2">WE ACUPUNCTURE & SPINAL CORRECTION</div>
     </div>
 
     <!-- 東方物理動態腳本 -->
@@ -440,9 +438,9 @@
             btn.innerText = '⚡ 正在解碼萬物能量...';
             
             setTimeout(() => {
-                alert('👑 【 劍鋒長生能量分析 】：時空通道已在手機端/電腦端雙重合龍！統帥，下一步，我們將在此處注入真正的能量百分比算法沙盤！');
-                btn.style.background = 'linear-gradient(135deg, #ff5722 0%, #e64a19 100%)';
-                btn.style.boxShadow = '0 0 25px rgba(255, 87, 34, 0.4)';
+                alert('👑 【 全治氣針 · 劍鋒長生能量分析 】：時空通道已合龍！下一步將在此處注入真正的能量百分比算法沙盤！');
+                btn.style.background = 'linear-gradient(135deg, #e03131 0%, #b81c1c 100%)';
+                btn.style.boxShadow = '0 0 25px rgba(224, 49, 49, 0.3)';
                 btn.innerText = '啟動長生能量運算 ➔';
             }, 500);
         });
